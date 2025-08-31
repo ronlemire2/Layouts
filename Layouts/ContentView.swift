@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Part 1 starting Point
-struct ContentView0: View {
+struct ContentView: View {
     @State private var messageString = ""
     
     var body: some View {
@@ -149,13 +149,13 @@ struct ContentView4: View {
     
     var body: some View {
         VStack {
-            /* Example of Text bleeding into safe area
-            Text("You Have Skills!")
-                .font(.largeTitle)
-                .fontWeight(.black)
-                .foregroundStyle(.white)
-                .background(.purple)
-             */
+            // Example of Text bleeding into safe area
+//            Text("You Have Skills!")
+//                .font(.largeTitle)
+//                .fontWeight(.black)
+//                .foregroundStyle(.white)
+//                .background(.purple)
+            
             
             Text("You Have Skills!")
                 .font(.largeTitle)
@@ -362,7 +362,7 @@ struct ContentView6: View {
 }
 
 // Types of gradient
-struct ContentView: View {
+struct ContentView7: View {
     var body: some View {
         VStack {
             Rectangle()
@@ -396,6 +396,206 @@ struct ContentView: View {
     }
 }
 
+// Part 3 starting point
+struct ContentView8: View {
+    @State private var messageString = "When the Genius Bar Needs Help, They Call You!"
+    
+    var body: some View {
+        VStack {
+            Text(messageString)
+                .font(.largeTitle)
+                .fontWeight(.heavy)
+                .minimumScaleFactor(0.5)
+                .multilineTextAlignment(.center) // align multiple rows in Text view
+                .foregroundStyle(.red)
+                .frame(height: 150)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/) // flexible width for smaller/larger devices
+                //.border(.orange, width: 2)
+                .padding()
+            
+            Spacer()
+            
+            HStack {
+                Button("Awesome") {
+                    messageString = "You Are Awesome!"
+                }
+                
+                Spacer()
+                
+                Button("Great") {
+                    messageString = "You Are Great!"
+                }
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
+    }
+}
+
+// Dividers
+struct ContentView9: View {
+    @State private var messageString = "When the Genius Bar Needs Help, They Call You!"
+    
+    var body: some View {
+        VStack {
+            Text(messageString)
+                .font(.largeTitle)
+                .fontWeight(.heavy)
+                .minimumScaleFactor(0.5)
+                .multilineTextAlignment(.center) // align multiple rows in Text view
+                .foregroundStyle(.red)
+                .frame(height: 150)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/) // flexible width for smaller/larger devices
+                //.border(.orange, width: 2)
+                .padding()
+            
+            Spacer()
+            
+            // Horizontal Divider
+            Divider()
+                .background(.blue)
+                .padding()
+                .frame(width: 150.0)
+            
+            // A more flexible divider using Rectangle
+            Rectangle()
+                .fill(.indigo)
+                .frame(width: 175, height: 1)
+            
+            
+            HStack {
+                Button("Awesome") {
+                    messageString = "You Are Awesome!"
+                }
+                
+                Spacer()
+                
+                // Vertical Divider
+                /*
+                Divider()
+                    .background(.blue)
+                    .padding()
+                */
+                
+                Button("Great") {
+                    messageString = "You Are Great!"
+                }
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
+    }
+}
+
+// GeometryReader to scale divider (i.e. 1/3 or 1/2 device width)
+struct ContentView10: View {
+    @State private var messageString = "When the Genius Bar Needs Help, They Call You!"
+    
+    var body: some View {
+        GeometryReader { geometry in
+            VStack {
+                Text(messageString)
+                    .font(.largeTitle)
+                    .fontWeight(.heavy)
+                    .minimumScaleFactor(0.5)
+                    .multilineTextAlignment(.center) // align multiple rows in Text view
+                    .foregroundStyle(.red)
+                    .frame(height: 150)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/) // flexible width for smaller/larger devices
+                    //.border(.orange, width: 2)
+                    .padding()
+                
+                Spacer()
+                
+                // Horizontal Divider
+                Divider()
+                    .background(.blue)
+                    .padding()
+                    .frame(width: 150.0)
+                
+                // A more flexible divider using Rectangle
+                Rectangle()
+                    .fill(.indigo)
+                    //.frame(width: geometry.size.width * 2/3, height: 1)
+                    .frame(width: geometry.size.width * 0.5, height: 1)
+                
+                
+                HStack {
+                    Button("Awesome") {
+                        messageString = "You Are Awesome!"
+                    }
+                    
+                    Spacer()
+                    
+                    // Vertical Divider
+                    /*
+                    Divider()
+                        .background(.blue)
+                        .padding()
+                    */
+                    
+                    Button("Great") {
+                        messageString = "You Are Great!"
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+            }
+            .padding()
+        }
+
+    }
+}
+
+// How to make safe area different color from rest of app
+struct ContentView11: View {
+    @State private var messageString = "When the Genius Bar Needs Help, They Call You!"
+    
+    var body: some View {
+        VStack {
+            // Top Safe Area
+            Text("You Have Skills!")
+                .font(.largeTitle)
+                .fontWeight(.black)
+                .foregroundStyle(.white)
+                .padding()
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/) // must come before .background to spread all the way across
+                .background(.purple)
+            
+            Spacer()
+            
+            Text(messageString)
+                .font(.largeTitle)
+                .fontWeight(.heavy)
+                .minimumScaleFactor(0.5)
+                .multilineTextAlignment(.center) // align multiple rows in Text view
+                .foregroundStyle(.red)
+                .frame(height: 150)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/) // flexible width for smaller/larger devices
+                .padding()
+            
+            Spacer()
+            
+            HStack {
+                Button("Awesome") {
+                    messageString = "You Are Awesome!"
+                }
+                
+                Spacer()
+                
+                Button("Great") {
+                    messageString = "You Are Great!"
+                }
+            }
+            .buttonStyle(.borderedProminent)
+            .padding()
+            
+            // Bottom Safe Area
+            Rectangle()
+                .frame(height: 0)
+                .background(.indigo)
+        }
+    }
+}
 #Preview {
     ContentView()
 }
